@@ -10,7 +10,7 @@ function fetchMPDManifest(string $url): ?string {
     curl_setopt_array($curl, [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => [
-            'X-Forwarded-For: 59.178.72.184'
+            'X-Forwarded-For: JASSSAINI'
         ],
     ]);
     $content = curl_exec($curl);
@@ -27,7 +27,7 @@ function extractPsshFromManifest(string $content, string $baseUrl): ?array {
                     $media = str_replace(['$RepresentationID$', '$Number$'], [(string)$rep['id'], (int)($template['startNumber'] ?? 0) + (int)($template->SegmentTimeline->S['r'] ?? 0)], $template['media']);
                     $url = "$baseUrl/dash/$media";
                     $context = stream_context_create([
-                        'http' => ['method' => 'GET', 'header' => 'X-Forwarded-For: 59.178.72.184'],
+                        'http' => ['method' => 'GET', 'header' => 'X-Forwarded-For: JASSSAINI'],
                     ]);
                     if (($content = @file_get_contents($url, false, $context)) !== false) {
                         $hex = bin2hex($content);
@@ -100,6 +100,6 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header('Content-Type: application/dash+xml');
-header('Content-Disposition: attachment; filename="script_by_drmlive' . urlencode($id) . '.mpd"');
+header('Content-Disposition: attachment; filename="script_by_JASSSAINI' . urlencode($id) . '.mpd"');
 echo $processedManifest;
 ?>
